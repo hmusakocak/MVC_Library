@@ -13,7 +13,6 @@ namespace MVC_Library.Controllers
 {
     public class CategoryController : Controller
     {
-        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
         // GET: Category
         public ActionResult Index()
@@ -52,7 +51,7 @@ namespace MVC_Library.Controllers
 
         public ActionResult UpdateCategory(int id)
         {
-            var catID = db_entities.CATEGORY.Find(id);
+            var catID = cm.TGetByID(id);
             return View(catID);
         }
 

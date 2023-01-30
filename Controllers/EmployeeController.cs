@@ -14,15 +14,13 @@ namespace MVC_Library.Controllers
 {
     public class EmployeeController : Controller
     {
-        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
 
         EmployeeManager em = new EmployeeManager(new EFEmployeeDal());
         // GET: Employee
         [HttpGet]
         public ActionResult Index()
         {
-            var list = from x in db_entities.EMPLOYEE select x;
-            ViewBag.Employees = list.ToList();
+            ViewBag.Employees = em.TGetAll();
             if (TempData["error"] != null)
             { ViewBag.error = TempData["error"]; }
             else
@@ -58,23 +56,19 @@ namespace MVC_Library.Controllers
 
         public ActionResult DeleteEmployee(int id)
         {
-            var rmv = db_entities.EMPLOYEE.Find(id);
-            db_entities.EMPLOYEE.Remove(rmv);
-            db_entities.SaveChanges();
+            em.TDelete(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult GetEmployee(int id)
         {
-            var emp = db_entities.EMPLOYEE.Find(id);
+            var emp = em.TGetByID(id);
             return View(emp);
         }
 
         public ActionResult UpdateEmployee(EMPLOYEE e)
         {
-            var updemp = db_entities.EMPLOYEE.Find(e.ID);
-            updemp.EMPLOYEE1 = e.EMPLOYEE1;
-            db_entities.SaveChanges();
+            em.TUpdate(e);
             return RedirectToAction("Index");
         }
 

@@ -10,14 +10,13 @@ namespace MVC_Library.Controllers
 {
     public class MemberController : Controller
     {
-        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
         MemberManager mm = new MemberManager(new EFMemberDal());
        
         // GET: Member
         [HttpGet]
         public ActionResult Index(int page = 1)
         {
-            var memlist = db_entities.MEMBER.ToList().ToPagedList(page, 3);
+            var memlist = mm.TGetAll().ToPagedList(page, 3);
             return View(memlist);
         }
 

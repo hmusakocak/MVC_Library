@@ -13,7 +13,6 @@ namespace MVC_Library.Controllers
 {
     public class WriterController : Controller
     {
-        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
         WriterManager wm = new WriterManager(new EFWriterDal());
         // GET: Writer
         public ActionResult Index()
