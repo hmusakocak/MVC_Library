@@ -1,0 +1,42 @@
+﻿@using MVC_Library.Models.Entity
+@model List<MOVEMENT>
+@{
+    ViewBag.Title = "MovementList";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<title>İade Et</title>
+<br />
+<h2 style="text-align:center">İADE SAYFASI</h2>
+<style>
+    th,td{
+        text-align:center
+    }
+</style>
+<table style="margin-top:20px" class="table">
+    <thead style="background-color:darkgray">
+        <tr>
+            <th>İŞLEM ID#</th>
+            <th>KİTAP ADI</th>
+            <th>ÜYE ADI</th>
+            <th>PERSONEL ADI</th>
+            <th>VERİLİŞ TARİHİ</th>
+            <th>İADE TARİHİ</th>
+            <th>İADE İŞLEMİ</th>
+        </tr>
+    </thead>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.BOOK1.NAME</td>
+            <td>@item.MEMBER1.NAME @item.MEMBER1.SURNAME</td>
+            <td>@item.EMPLOYEE1.EMPLOYEE1</td>
+            <td>@item.GIVE_TIME.Value.ToString("dd/MM/yyyy")</td>
+            <td>@item.GET_TIME.Value.ToString("dd/MM/yyyy")</td>
+            <td><input class="btn btn-dark" type="button" value="İADE GERÇEKLEŞTİR" onclick="location.href='@Url.Action("Refund", "Loan", new { id = item.ID })'"/></td>
+        </tr>
+    }
+</table>
+

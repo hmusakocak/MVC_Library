@@ -1,0 +1,37 @@
+﻿@model List<MVC_Library.Models.Entity.PENALTY>
+@{
+    ViewBag.Title = "PenaltyList";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+
+<style>
+    th, td {
+        text-align: center
+    }
+</style>
+
+<table style="margin-top:20px" class="table">
+    <thead style="background-color:darkgray">
+        <tr>
+            <th>CEZA ID#</th>
+            <th>HAREKET ID#</th>
+            <th>ÜYE ADI</th>
+            <th>BAŞLANGIÇ TARİHİ</th>
+            <th>İADE GERÇEKLEŞEN TARİH</th>
+            <th>CEZA TUTARI</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.MOVEMENT</td>
+            <td>@item.MEMBER1.NAME @item.MEMBER1.SURNAME</td>
+            <td>@item.START.Value.ToString("dd/MM/yyyy")</td>
+            <td>@item.FINISH.Value.ToString("dd/MM/yyyy")</td>
+            <td>@item.MONEY ₺</td>
+        </tr>
+    }
+</table>

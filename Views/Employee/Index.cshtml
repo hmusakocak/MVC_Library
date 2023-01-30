@@ -1,0 +1,57 @@
+﻿@model MVC_Library.Models.Entity.EMPLOYEE
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personel</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="text-align:center">
+        <form class="form-group" method="post">
+            <label><b>Personel Adı</b></label>
+            @Html.TextBoxFor(k => k.EMPLOYEE1, new { @class = "form-control" })
+            <div><b style="color:red">@ViewBag.error</b></div>
+            <button style="text-align:center; margin-top:10px" class="btn btn-dark">EKLE</button>
+        </form>
+    </div>
+
+
+    <style>
+        th {
+            text-align: center;
+        }
+    </style>
+    <table style="text-align:center" class="table">
+        <thead style="background-color:darkgray">
+            <tr>
+                <th>ID#</th>
+                <th>PERSONEL</th>
+                <th>PERSONEL SİL</th>
+                <th>PERSONEL GÜNCELLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Employees)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.EMPLOYEE1</td>
+                    <td width="200px">
+                        <input class="btn btn-danger" type="button" value="SİL" onclick="location.href='@Url.Action("DeleteEmployee", "Employee", new {id = item.ID })'" />
+                    </td>
+                    <td width="200px"><input class="btn btn-success" type="button" value="GÜNCELLE" onclick="location.href='@Url.Action("UpdateEmployee", "Employee", new {id = item.ID })'" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="text-align:center">
+        <a style="margin:2px;color:white" href="/Employee/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+    </div>
+</body>
+</html>
+

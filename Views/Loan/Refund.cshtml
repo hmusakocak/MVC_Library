@@ -1,0 +1,35 @@
+﻿@model MVC_Library.Models.Entity.MOVEMENT
+@{
+    ViewBag.Title = "Refund";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateMovement", "Loan", FormMethod.Post))
+{
+    <div class="form-group">
+        <label><b>Hareket ID#</b></label>
+        @Html.TextBoxFor(k => k.ID, new { @class = "form-control", @readonly = true })<br />
+        <label><b>Kitap Adı</b></label>
+        @Html.TextBoxFor(k => k.BOOK1.NAME, new { @class = "form-control" })<br />
+
+        <label><b>Üye Adı</b></label>
+        @Html.TextBoxFor(k => k.MEMBER1.NAME, new { @class = "form-control" })<br />
+
+        <label><b>Personel</b></label>
+        @Html.TextBoxFor(k => k.EMPLOYEE1.EMPLOYEE1, new { @class = "form-control" })<br />
+
+        <label><b>Veriliş Tarihi</b></label>
+        @Html.TextBoxFor(k => k.GIVE_TIME, "{0: dd.MM.yyyy}", new { @class = "form-control", @readonly = true })<br />
+
+        <label><b>Beklenen İade Tarihi</b></label>
+        @Html.TextBoxFor(k => k.GET_TIME, "{0: dd.MM.yyyy}", new { @class = "form-control", @readonly = true })<br />
+
+        <label><b>Üyenin İade Ettiği Tarih</b></label>
+        <input class="form-control" type="date"  name="MEMBER_GIVETIME" max="@DateTime.Now.AddMonths(12).ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" /><br />
+
+        <div style="text-align:center; margin:5px;">
+            <button class="btn btn-outline-warning">İade İşlemini Tamamla</button>
+        </div>
+        <input type="hidden" name="STATUS" value="TRUE" readonly />
+    </div>
+}

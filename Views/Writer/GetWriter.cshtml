@@ -1,0 +1,36 @@
+﻿@model MVC_Library.Models.Entity.WRITER
+@{
+    ViewBag.Title = "Writer Update";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Yazar Güncelleme</title>
+</head>
+<body>
+    @using (Html.BeginForm("UpdateWriter", "Writer", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Yazar Numarası#</label>
+            @Html.TextBoxFor(k => k.ID, new { @readonly = true, @class = "form-control" })
+
+            <label>Yazar Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+
+            <label>Yazar Soyadı</label>
+            @Html.TextBoxFor(k => k.SURNAME, new { @class = "form-control" })
+            wh
+            <label>Yazar Detayı</label>
+            @Html.TextAreaFor(k => k.DETAIL, new { @class = "form-control" })
+
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Güncelle</button>
+            </div>
+        </div>
+    }
+</body>
+</html>

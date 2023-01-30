@@ -1,0 +1,32 @@
+﻿@model MVC_Library.Models.Entity.MOVEMENT
+@{
+    ViewBag.Title = "GiveBook";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<title>Kitap Ver</title>
+<form style="margin-top:20px" class="form-group" method="post">
+    <label><b>Üye ID#</b></label>
+    @Html.TextBoxFor(k => k.MEMBER, new { @class = "form-control" })
+    <div><b style="color:red">@Html.ValidationMessageFor(k => k.MEMBER)</b></div><br />
+
+    <label><b>Kitap ID#</b></label>
+    @Html.TextBoxFor(k => k.BOOK, new { @class = "form-control" })
+<div><b style="color:red">@ViewBag.errormsg</b></div>
+    <div><b style="color:red">@Html.ValidationMessageFor(k => k.BOOK)</b></div><br />
+
+    <label><b>Personel ID#</b></label>
+    @Html.TextBoxFor(k => k.EMPLOYEE, new { @class = "form-control" })
+    <div><b style="color:red">@Html.ValidationMessageFor(k => k.EMPLOYEE)</b></div><br />
+
+    <label><b>Ödünç Veriliş Tarihi</b></label>
+    <input class="form-control" type="text" name="GIVE_TIME" value="@DateTime.Now.ToShortDateString()" readonly /><br />
+
+    <label><b>İade Tarihi</b></label>
+    <input class="form-control" type="text" name="GET_TIME" value="@DateTime.Now.AddDays(7).ToShortDateString()" readonly /><br />
+
+    <div style="text-align:center"><button class="btn btn-success">İşlemi Tamamla</button></div>
+    <input type="hidden" name="STATUS" value="FALSE" readonly /><br />
+    <input type="hidden" name="isPenaltyApplied" value="FALSE" readonly /><br />
+</form>
+

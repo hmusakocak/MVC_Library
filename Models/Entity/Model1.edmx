@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBKUTUPHANEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="CATEGORY" Type="tinyint" />
+          <Property Name="WRITER" Type="tinyint" />
+          <Property Name="YEAR" Type="char" MaxLength="4" />
+          <Property Name="PAGE" Type="varchar" MaxLength="4" />
+          <Property Name="PUBLISH" Type="varchar" MaxLength="50" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="CASE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTH" Type="varchar" MaxLength="50" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MEMBER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PHOTO" Type="varchar" MaxLength="250" />
+          <Property Name="PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="SCHOOL" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MOVEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOOK" Type="int" />
+          <Property Name="MEMBER" Type="int" />
+          <Property Name="EMPLOYEE" Type="int" />
+          <Property Name="GIVE_TIME" Type="smalldatetime" />
+          <Property Name="GET_TIME" Type="smalldatetime" />
+          <Property Name="MEMBER_GIVETIME" Type="smalldatetime" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="isPenaltyApplied" Type="bit" />
+        </EntityType>
+        <EntityType Name="PENALTY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEMBER" Type="int" />
+          <Property Name="START" Type="smalldatetime" />
+          <Property Name="FINISH" Type="smalldatetime" />
+          <Property Name="MONEY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MOVEMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="WRITER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="DETAIL" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_BOOK_CATEGORY">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_WRITER">
+          <End Role="WRITER" Type="Self.WRITER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WRITER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="WRITER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_BOOK">
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="BOOK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_MEMBER">
+          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="MEMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PENALTY_MEMBER">
+          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="0..1" />
+          <End Role="PENALTY" Type="Self.PENALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTY">
+              <PropertyRef Name="MEMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PENALTY_MOVEMENT">
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PENALTY" Type="Self.PENALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVEMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTY">
+              <PropertyRef Name="MOVEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBKUTUPHANEModelStoreContainer">
+          <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CASE" EntityType="Self.CASE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEMBER" EntityType="Self.MEMBER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVEMENT" EntityType="Self.MOVEMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PENALTY" EntityType="Self.PENALTY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WRITER" EntityType="Self.WRITER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BOOK_CATEGORY" Association="Self.FK_BOOK_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="BOOK" EntitySet="BOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_WRITER" Association="Self.FK_BOOK_WRITER">
+            <End Role="WRITER" EntitySet="WRITER" />
+            <End Role="BOOK" EntitySet="BOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_BOOK" Association="Self.FK_MOVEMENT_BOOK">
+            <End Role="BOOK" EntitySet="BOOK" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_EMPLOYEE" Association="Self.FK_MOVEMENT_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_MEMBER" Association="Self.FK_MOVEMENT_MEMBER">
+            <End Role="MEMBER" EntitySet="MEMBER" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PENALTY_MEMBER" Association="Self.FK_PENALTY_MEMBER">
+            <End Role="MEMBER" EntitySet="MEMBER" />
+            <End Role="PENALTY" EntitySet="PENALTY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PENALTY_MOVEMENT" Association="Self.FK_PENALTY_MOVEMENT">
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+            <End Role="PENALTY" EntitySet="PENALTY" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBKUTUPHANEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOOK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY" Type="Byte" />
+          <Property Name="WRITER" Type="Byte" />
+          <Property Name="YEAR" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PAGE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PUBLISH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CATEGORY1" Relationship="Self.FK_BOOK_CATEGORY" FromRole="BOOK" ToRole="CATEGORY" />
+          <NavigationProperty Name="WRITER1" Relationship="Self.FK_BOOK_WRITER" FromRole="BOOK" ToRole="WRITER" />
+          <NavigationProperty Name="MOVEMENT" Relationship="Self.FK_MOVEMENT_BOOK" FromRole="BOOK" ToRole="MOVEMENT" />
+          <Property Name="STATUS" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CASE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOK" Relationship="Self.FK_BOOK_CATEGORY" FromRole="CATEGORY" ToRole="BOOK" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MOVEMENT" Relationship="Self.FK_MOVEMENT_EMPLOYEE" FromRole="EMPLOYEE" ToRole="MOVEMENT" />
+        </EntityType>
+        <EntityType Name="MEMBER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PHOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SCHOOL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MOVEMENT" Relationship="Self.FK_MOVEMENT_MEMBER" FromRole="MEMBER" ToRole="MOVEMENT" />
+          <NavigationProperty Name="PENALTY" Relationship="Self.FK_PENALTY_MEMBER" FromRole="MEMBER" ToRole="PENALTY" />
+        </EntityType>
+        <EntityType Name="MOVEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOOK" Type="Int32" />
+          <Property Name="MEMBER" Type="Int32" />
+          <Property Name="EMPLOYEE" Type="Int32" />
+          <Property Name="GET_TIME" Type="DateTime" Precision="0" />
+          <Property Name="GIVE_TIME" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BOOK1" Relationship="Self.FK_MOVEMENT_BOOK" FromRole="MOVEMENT" ToRole="BOOK" />
+          <NavigationProperty Name="EMPLOYEE1" Relationship="Self.FK_MOVEMENT_EMPLOYEE" FromRole="MOVEMENT" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="MEMBER1" Relationship="Self.FK_MOVEMENT_MEMBER" FromRole="MOVEMENT" ToRole="MEMBER" />
+          <NavigationProperty Name="PENALTY" Relationship="Self.FK_PENALTY_MOVEMENT" FromRole="MOVEMENT" ToRole="PENALTY" />
+          <Property Name="MEMBER_GIVETIME" Type="DateTime" Precision="0" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="isPenaltyApplied" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PENALTY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEMBER" Type="Int32" />
+          <Property Name="START" Type="DateTime" Precision="0" />
+          <Property Name="FINISH" Type="DateTime" Precision="0" />
+          <Property Name="MONEY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MOVEMENT" Type="Int32" />
+          <NavigationProperty Name="MEMBER1" Relationship="Self.FK_PENALTY_MEMBER" FromRole="PENALTY" ToRole="MEMBER" />
+          <NavigationProperty Name="MOVEMENT1" Relationship="Self.FK_PENALTY_MOVEMENT" FromRole="PENALTY" ToRole="MOVEMENT" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WRITER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOK" Relationship="Self.FK_BOOK_WRITER" FromRole="WRITER" ToRole="BOOK" />
+        </EntityType>
+        <Association Name="FK_BOOK_CATEGORY">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_WRITER">
+          <End Role="WRITER" Type="Self.WRITER" Multiplicity="0..1" />
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WRITER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="WRITER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_BOOK">
+          <End Role="BOOK" Type="Self.BOOK" Multiplicity="0..1" />
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="BOOK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MOVEMENT_MEMBER">
+          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="0..1" />
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MOVEMENT">
+              <PropertyRef Name="MEMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PENALTY_MEMBER">
+          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="0..1" />
+          <End Role="PENALTY" Type="Self.PENALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTY">
+              <PropertyRef Name="MEMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PENALTY_MOVEMENT">
+          <End Role="MOVEMENT" Type="Self.MOVEMENT" Multiplicity="0..1" />
+          <End Role="PENALTY" Type="Self.PENALTY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVEMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PENALTY">
+              <PropertyRef Name="MOVEMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBKUTUPHANE_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOK" EntityType="Self.BOOK" />
+          <EntitySet Name="CASE" EntityType="Self.CASE" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="MEMBER" EntityType="Self.MEMBER" />
+          <EntitySet Name="MOVEMENT" EntityType="Self.MOVEMENT" />
+          <EntitySet Name="PENALTY" EntityType="Self.PENALTY" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="WRITER" EntityType="Self.WRITER" />
+          <AssociationSet Name="FK_BOOK_CATEGORY" Association="Self.FK_BOOK_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="BOOK" EntitySet="BOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_WRITER" Association="Self.FK_BOOK_WRITER">
+            <End Role="WRITER" EntitySet="WRITER" />
+            <End Role="BOOK" EntitySet="BOOK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_BOOK" Association="Self.FK_MOVEMENT_BOOK">
+            <End Role="BOOK" EntitySet="BOOK" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_EMPLOYEE" Association="Self.FK_MOVEMENT_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MOVEMENT_MEMBER" Association="Self.FK_MOVEMENT_MEMBER">
+            <End Role="MEMBER" EntitySet="MEMBER" />
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PENALTY_MEMBER" Association="Self.FK_PENALTY_MEMBER">
+            <End Role="MEMBER" EntitySet="MEMBER" />
+            <End Role="PENALTY" EntitySet="PENALTY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PENALTY_MOVEMENT" Association="Self.FK_PENALTY_MOVEMENT">
+            <End Role="MOVEMENT" EntitySet="MOVEMENT" />
+            <End Role="PENALTY" EntitySet="PENALTY" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBKUTUPHANEModelStoreContainer" CdmEntityContainer="DBKUTUPHANE_Entities">
+          <EntitySetMapping Name="BOOK">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.BOOK">
+              <MappingFragment StoreEntitySet="BOOK">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="WRITER" ColumnName="WRITER" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="PAGE" ColumnName="PAGE" />
+                <ScalarProperty Name="PUBLISH" ColumnName="PUBLISH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CASE">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.CASE">
+              <MappingFragment StoreEntitySet="CASE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORY">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EMPLOYEE1" ColumnName="EMPLOYEE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEMBER">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.MEMBER">
+              <MappingFragment StoreEntitySet="MEMBER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="SCHOOL" ColumnName="SCHOOL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVEMENT">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.MOVEMENT">
+              <MappingFragment StoreEntitySet="MOVEMENT">
+                <ScalarProperty Name="isPenaltyApplied" ColumnName="isPenaltyApplied" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="MEMBER_GIVETIME" ColumnName="MEMBER_GIVETIME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BOOK" ColumnName="BOOK" />
+                <ScalarProperty Name="MEMBER" ColumnName="MEMBER" />
+                <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
+                <ScalarProperty Name="GET_TIME" ColumnName="GET_TIME" />
+                <ScalarProperty Name="GIVE_TIME" ColumnName="GIVE_TIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PENALTY">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.PENALTY">
+              <MappingFragment StoreEntitySet="PENALTY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MEMBER" ColumnName="MEMBER" />
+                <ScalarProperty Name="START" ColumnName="START" />
+                <ScalarProperty Name="FINISH" ColumnName="FINISH" />
+                <ScalarProperty Name="MONEY" ColumnName="MONEY" />
+                <ScalarProperty Name="MOVEMENT" ColumnName="MOVEMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WRITER">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.WRITER">
+              <MappingFragment StoreEntitySet="WRITER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

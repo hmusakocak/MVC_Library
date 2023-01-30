@@ -1,0 +1,70 @@
+﻿@using MVC_Library.Models.Entity
+@model List<BOOK>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Kitap</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
+    {
+        <div style="margin:10px">
+            <b>Aranacak kitap adını giriniz: </b>@Html.TextBox("search")
+            <input type="submit" value="Ara" />
+        </div>
+    }
+    <table style="margin-top:20px;text-align:center" class="table">
+        <thead style="background-color:darkgray">
+            <tr>
+                <th style="text-align:center">#ID</th>
+                <th style="text-align:center">KİTAP ADI</th>
+                <th style="text-align:center">KİTAP KATEGORİSİ</th>
+                <th style="text-align:center">KİTAP YAZARI</th>
+                <th style="text-align:center">BASIM YILI</th>
+                <th style="text-align:center">SAYFA SAYISI</th>
+                <th style="text-align:center">YAYINEVİ</th>
+                <th style="text-align:center">GÜNCEL DURUM</th>
+                <th style="text-align:center">KİTAP SİL</th>
+                <th style="text-align:center">KİTAP GÜNCELLE</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.NAME</td>
+                    <td>@item.CATEGORY1.NAME</td>
+                    <td>@item.WRITER1.NAME @item.WRITER1.SURNAME</td>
+                    <td>@item.YEAR</td>
+                    <td>@item.PAGE</td>
+                    <td>@item.PUBLISH</td>
+                    <td>@item.STATUS</td>
+
+                    <td width="200px">
+                        <input class="btn btn-danger" type="button" value="SİL" onclick="location.href='@Url.Action("DeleteBook", "Book", new {id = item.ID })'" />
+                    </td>
+                    <td width="200px"><input class="btn btn-success" type="button" value="GÜNCELLE" onclick="location.href='@Url.Action("GetBook", "Book", new {id = item.ID })'" /></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="text-align:center;margin:10px">
+    </div>
+    <div style="text-align:center">
+        <a style="margin:2px;color:white" href="/Book/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+    </div>
+    <div style="margin:5px;text-align:center">
+        <a href="/Book/AddBook/" class="btn btn-success">EKLE</a>
+    </div>
+</body>
+</html>
+

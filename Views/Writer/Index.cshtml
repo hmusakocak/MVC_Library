@@ -1,0 +1,64 @@
+﻿@using MVC_Library.Models.Entity
+@model List<WRITER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Yazar</title>
+</head>
+<body>
+    <div class="form-group">
+        @using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post))
+        {<div style="text-align:center;margin:15px">
+                <label><b>Yazar Adı</b></label>
+                <input class="form-control" type="text" name="NAME" />
+                <div><b style="color:red">@ViewBag.nameerror</b></div>
+
+                <label><b>Yazar Soyadı</b></label>
+                <input class="form-control" type="text" name="SURNAME" />
+                <div><b style="color:red">@ViewBag.surnameerror</b></div>
+                <label><b>Yazar Detay</b></label>
+                <input class="form-control" type="text" name="DETAIL" />
+                <button style="margin:5px" class="btn btn-dark">EKLE</button>
+            </div>
+        }
+    </div>
+    <div style="text-align:center">
+        <a style="margin:2px;color:white" href="/Writer/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+    </div>
+    <div style="margin-top:20px">
+        <table style="text-align:center" class="table">
+            <thead style="background-color:darkgray">
+                <tr>
+                    <th style="text-align:center">#ID</th>
+                    <th style="text-align:center">YAZAR ADI</th>
+                    <th style="text-align:center">YAZAR SOYADI</th>
+                    <th style="text-align:center">YAZAR DETAYI</th>
+                    <th style="text-align:center">YAZAR SİL</th>
+                    <th style="text-align:center">YAZAR GÜNCELLE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.NAME</td>
+                        <td>@item.SURNAME</td>
+                        <td>@item.DETAIL</td>
+                        <td width="200px"><input class="btn btn-danger" type="button" value="SİL" onclick="location.href='@Url.Action("DeleteWriter","Writer", new {id = item.ID })'" /></td>
+                        <td width="200px"><input class="btn btn-success" type="button" value="GÜNCELLE" onclick="location.href='@Url.Action("GetWriter","Writer", new {id = item.ID })'" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

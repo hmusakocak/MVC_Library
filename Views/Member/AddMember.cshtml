@@ -1,0 +1,66 @@
+﻿@using MVC_Library.Models.Entity
+@model MEMBER
+@{
+    ViewBag.Title = "AddMember";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Üye Ekle</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-group">
+        <form method="post">
+            <label>Üye Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.NAME)</b><br />
+
+            <label>Üye Soyadı</label>
+            @Html.TextBoxFor(k => k.SURNAME, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.SURNAME)</b><br />
+
+
+            <label>E-Posta</label>
+            @Html.TextBoxFor(k => k.MAIL, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.MAIL)</b><br />
+
+            <label>Şifre</label>
+            <input type="password" class="form-control" name="PASSWORD" id="hide" /><div style="margin-top:5px"><input type="checkbox" onclick="ShowPass()" /><b>Şifreyi Göster</b></div>
+            <b style="color:red">@Html.ValidationMessageFor(k => k.PASSWORD)</b><br />
+
+            <label>Kullanıcı Adı</label>
+            @Html.TextBoxFor(k => k.USERNAME, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.USERNAME)</b><br />
+
+            <label>Cep Numarası</label>
+            @Html.TextBoxFor(k => k.PHONE, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.PHONE)</b><br />
+
+            <label>Okuduğu Okul</label>
+            @Html.TextBoxFor(k => k.SCHOOL, new { @class = "form-control" })
+            <b style="color:red">@Html.ValidationMessageFor(k => k.SCHOOL)</b><br />
+
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Ekle</button>
+            </div>
+        </form>
+    </div>
+<script>
+    function ShowPass()
+    {
+        var x = document.getElementById("hide");
+        if (x.type === "password")
+        {
+            x.type = "text";
+        } else
+        {
+            x.type = "password";
+        }
+    }
+</script>
+</body>
+</html>
+

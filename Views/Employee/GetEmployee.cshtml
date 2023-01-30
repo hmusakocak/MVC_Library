@@ -1,0 +1,30 @@
+﻿@model MVC_Library.Models.Entity.EMPLOYEE
+@{
+    ViewBag.Title = "GetEmployee";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personel Güncelleme</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Personel ID#</label>
+            @Html.TextBoxFor(k => k.ID, new { @class = "form-control", @readonly = true })
+
+            <label>Personel Adı</label>
+            @Html.TextBoxFor(k => k.EMPLOYEE1, new { @class = "form-control" })
+
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Güncelle</button>
+            </div>
+        </div>
+    }
+</body>
+</html>
+
