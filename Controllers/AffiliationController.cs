@@ -43,7 +43,7 @@ namespace MVC_Library.Controllers
         {
             var list = db_entities.MEMBER.ToList();
             foreach (var item in list)
-            {
+            { 
                 if (m.USERNAME == item.USERNAME)
                 {
                     TempData["error"] = "Bu kullanıcı adı kullanılmaktadır!";
