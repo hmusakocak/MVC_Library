@@ -20,7 +20,6 @@ namespace MVC_Library.Controllers
         public ActionResult Index(string search)
         {
             var booklist = from x in db_entities.BOOK select x;
-
             if (!string.IsNullOrEmpty(search))
             {
                 booklist = booklist.Where(x => x.NAME.Contains(search));
