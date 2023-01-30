@@ -1,0 +1,69 @@
+﻿@using MVC_Library.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MEMBER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Üye</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+    <style>
+        th {
+            text-align: center;
+        }
+    </style>
+    <table style="margin-top:20px;text-align:center" class="table">
+        <thead style="background-color:darkgray">
+            <tr>
+                <th>ID#</th>
+                <th>ÜYE ADI</th>
+                <th>ÜYE SOYADI</th>
+                <th>E-POSTA</th>
+                <th>ŞİFRE</th>
+                <th>KULANICI ADI</th>
+                <th>CEP NUMARASI</th>
+                <th>OKUDUĞU OKUL</th>
+                <th>ÜYE SİL</th>
+                <th>ÜYE GÜNCELLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.NAME</td>
+                    <td>@item.SURNAME</td>
+                    <td>@item.MAIL</td>
+                    <td>@item.PASSWORD</td>
+                    <td>@item.USERNAME</td>
+                    <td>@item.PHONE</td>
+                    <td>@item.SCHOOL</td>
+                    <td width="200px">
+                        <input class="btn btn-danger" type="button" value="SİL" onclick="location.href='@Url.Action("DeleteMember", "Member", new {id = item.ID })'" />
+                    </td>
+                    <td width="200px"><input class="btn btn-success" type="button" value="GÜNCELLE" onclick="location.href='@Url.Action("GetMember", "Member", new {id = item.ID })'" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="text-align:center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <div style="text-align:center">
+        <a style="margin:2px;color:white" href="/Member/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+    </div>
+    <div style="text-align:center">
+        <a style="margin:2px;color:white" href="/Member/AddMember" class="btn btn-info">EKLE</a>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+﻿@using MVC_Library.Models.Entity
+@model CATEGORY
+@{
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kategori Güncelleme</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("EditCategory", "Category", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Kategori Numarası#</label>
+            @Html.TextBoxFor(k => k.ID, new { @readonly = true, @class = "form-control" })
+
+            <label>Kategori Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Güncelle</button>
+            </div>
+        </div>
+    }
+</body>
+</html>
+
+
+
+
+

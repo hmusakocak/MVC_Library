@@ -1,0 +1,47 @@
+﻿@using MVC_Library.Models.Entity
+@model MVC_Library.Models.Entity.BOOK
+@{
+    ViewBag.Title = "GetBook";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kitap Güncelleme</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("UpdateBook", "Book", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Kitap ID#</label>
+            @Html.TextBoxFor(k => k.ID, new { @class = "form-control", @readonly = true})
+            
+            <label>Kitap Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+
+            <label>Kitap Kategorisi</label>
+            @Html.DropDownListFor(k => k.CATEGORY, (List<SelectListItem>)ViewBag.catlist, new { @class = "form-control" })
+
+            <label>Kitap Yazarı</label>
+            @Html.DropDownListFor(k => k.WRITER, (List<SelectListItem>)ViewBag.writerlist, new { @class = "form-control" })
+
+            <label>Basım Yılı</label>
+            @Html.TextBoxFor(k => k.YEAR, new { @class = "form-control" })
+
+            <label>Sayfa Sayısı</label>
+            @Html.TextBoxFor(k => k.PAGE, new { @class = "form-control" })
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.PUBLISH, new { @class = "form-control" })
+
+        <input type="hidden" name="STATUS" value="@Model.STATUS.Value.ToString()" />
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Güncelle</button>
+            </div>
+        </div>
+    }
+</body>
+</html>
+

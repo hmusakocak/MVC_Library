@@ -1,0 +1,49 @@
+﻿@model MVC_Library.Models.Entity.BOOK
+
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kitap Ekle</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-group">
+        <form method="post">
+            <label>Kitap Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+            <div><b style="color:red">@Html.ValidationMessageFor(k => k.NAME)</b></div><br />
+
+            <label>Kitap Kategorisi</label>
+            @Html.DropDownListFor(k => k.CATEGORY, (List<SelectListItem>)ViewBag.catlist, new { @class = "form-control" })<br />
+
+            <label>Kitap Yazarı</label>
+            @Html.DropDownListFor(k => k.WRITER, (List<SelectListItem>)ViewBag.writerlist, new { @class = "form-control" })<br />
+
+            <label>Basım Yılı</label>
+            @Html.TextBoxFor(k => k.YEAR, new { @class = "form-control" })
+            <div><b style="color:red">@Html.ValidationMessageFor(k => k.YEAR)</b></div><br />
+
+            <label>Sayfa Sayısı</label>
+            @Html.TextBoxFor(k => k.PAGE, new { @class = "form-control" })
+            <div><b style="color:red">@Html.ValidationMessageFor(k => k.PAGE)</b></div><br />
+
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.PUBLISH, new { @class = "form-control" })
+            <div><b style="color:red">@Html.ValidationMessageFor(k => k.PUBLISH)</b></div><br />
+
+
+            <input class="form-control" type="hidden" name="STATUS" value="True" readonly />
+            <div style="text-align:center;">
+                <button class="btn btn-outline-warning">Ekle</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,123 @@
+﻿@model MVC_Library.Models.Entity.MEMBER
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!--A Design by W3layouts
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<html lang="en">
+<head>
+    <title>Register</title>
+    <!-- custom-theme -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Course Register Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //custom-theme -->
+    <!-- css files -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+    <link href="~/Content/RegisterComponent/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- //css files -->
+
+    <link rel="stylesheet" href="~/Content/RegisterComponent/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+
+</head>
+<!-- body starts -->
+<body>
+    <!-- section -->
+    <section class="register">
+        <div class="register-full">
+            <div class="register-left">
+                <div class="register">
+                    <div class="logo">
+                        <a href="#"><span class="fa fa-graduation-cap" aria-hidden="true"></span></a>
+                    </div>
+                    <h1>MVC LIBRARY</h1>
+                    <p>
+                       Yönetim ve Öğrenci Panel Sistemi
+                    </p>
+                    <div class="content3">
+                        <ul>
+                            <li><a class="read" href="https://www.github.com/glitchedpng"> Know More</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="register-right">
+                <div class="register-in">
+                    <h2><span class="fa fa-pencil"></span> Sistem kayıt formu</h2>
+                    <div class="register-form">
+                        <form action="#" method="post">
+                            <div class="fields-grid">
+                                <div class="styled-input agile-styled-input-top">
+                                    <input type="text" name="NAME" required="">
+                                    <label>Adınız</label>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input agile-styled-input-top">
+                                    <input type="text" name="SURNAME" required="">
+                                    <label>Soyadınız</label>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input agile-styled-input-top">
+                                    <input type="text" name="USERNAME" required="">
+                                    <label>Kullanıcı adınız</label>
+                                    <b style="color:darkred">@ViewBag.error</b>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input">
+                                    <input type="email" name="MAIL" required="">
+                                    <label>E-posta</label>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input">
+                                    <input type="tel" name="PHONE" required="">
+                                    <label>Telefon Numaranız</label>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input">
+                                    <input type="password" name="PASSWORD" required="">
+                                    <label>Şifreniz</label>
+                                    <span></span>
+                                </div>
+                                <div class="styled-input agile-styled-input-top">
+                                    <select name="SCHOOL" required="">
+                                        <option value="">Course Type*</option>
+                                        <option value="Üniversite 1">üni</option>
+                                        <option value="Üniversite 2">üni2</option>
+                                        <option value="">Part time</option>
+                                        <option value="">Higher degree</option>
+                                        <option value="">Graduate</option>
+                                        <option value="">Pg</option>
+                                        <option value="">Degree</option>
+                                    </select>
+                                    <span></span>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                            <input type="submit" value="Kayıt Ol">
+                        </form>
+                    </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+            <div class="clear"> </div>
+        </div>
+        <!-- copyright -->
+        <p class="agile-copyright">© 2018 Course Register Form. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+        <!-- //copyright -->
+    </section>
+    <!-- //section -->
+</body>
+<!-- //body ends -->
+</html>

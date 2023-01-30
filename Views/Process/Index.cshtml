@@ -1,0 +1,74 @@
+﻿@using MVC_Library.Models.Entity
+@model List<MOVEMENT>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<title>Gerçekleşmiş İşlemler</title>
+<br />
+<h2 style="text-align:center">İADE SAYFASI</h2>
+<style>
+    th, td {
+        text-align: center
+    }
+</style>
+<table style="margin-top:20px" class="table">
+    <thead style="background-color:darkgray">
+        <tr>
+            <th>İŞLEM ID#</th>
+            <th>KİTAP ADI</th>
+            <th>ÜYE ADI</th>
+            <th>PERSONEL ADI</th>
+            <th>VERİLİŞ TARİHİ</th>
+            <th>BEKLENEN İADE TARİHİ</th>
+            <th>İADE GERÇEKLEŞEN TARİH</th>
+            <th>TARİH FARKI</th>
+            <th>CEZA İŞLEMİ</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.BOOK1.NAME</td>
+            <td>@item.MEMBER1.NAME @item.MEMBER1.SURNAME</td>
+            <td>@item.EMPLOYEE1.EMPLOYEE1</td>
+            <td>@item.GIVE_TIME.Value.ToString("dd/MM/yyyy")</td>
+            <td>@item.GET_TIME.Value.ToString("dd/MM/yyyy")</td>
+            <td>@item.MEMBER_GIVETIME.Value.ToString("dd/MM/yyyy")</td>
+            @if (Convert.ToInt32(item.MEMBER_GIVETIME.Value.Subtract(item.GET_TIME.Value).Days) < 0)
+            {
+                int a = 2 * item.MEMBER_GIVETIME.Value.Subtract(item.GET_TIME.Value).Days;
+                int difference = (a / 2) - a;
+                <td>@difference GÜN ERKEN </td>
+            }
+            else
+            {
+                int a = item.MEMBER_GIVETIME.Value.Subtract(item.GET_TIME.Value).Days;
+                <td>@a GÜN GEÇ</td>
+            }
+            @if (Convert.ToInt32(item.MEMBER_GIVETIME.Value.Subtract(item.GET_TIME.Value).Days) > 0 && item.isPenaltyApplied == false)
+            {
+                <td><input class="btn btn-danger" type="button" value="CEZA UYGULA" onclick="location.href='@Url.Action("DoPunishment","Process", new {id = item.ID })'" /></td>
+            }
+            else
+            {
+                switch (item.isPenaltyApplied)
+                {
+                    case true:
+                        <td><b style="color:red">UYGULANDI</b></td>
+                        break;
+                    default:
+                        <td><b style="color:red">UYGULANAMAZ</b></td>
+                        break;
+                }
+            }
+        </tr>
+    }
+</table>
+<div style="margin-top: 20px; text-align: center">
+    <a style="margin:2px;color:white" href="/Process/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+</div>
+

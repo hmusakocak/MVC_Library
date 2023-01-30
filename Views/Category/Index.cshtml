@@ -1,0 +1,55 @@
+﻿@using MVC_Library.Models.Entity
+@model List<CATEGORY>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Kategori</title>
+</head>
+<body>
+    <div style="text-align:center;margin:10px">
+        @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+        {<label><b>Kategori Adı</b></label>
+            <input type="text" name="NAME" />
+            <button class="btn btn-dark">EKLE</button>
+            <div><b style="color:red">@ViewBag.error</b></div>
+        }
+
+    </div>
+    <div style="margin-top: 20px; text-align: center">
+        <a style="margin:2px;color:white" href="/Category/Index" class="btn btn-info">LİSTEYİ YENİLE</a>
+    </div>
+    <div style="margin-top: 20px">
+        <table style="text-align:center" class="table">
+            <thead style="background-color:darkgray">
+                <tr>
+                    <th style="text-align:center">#ID</th>
+                    <th style="text-align:center">KATEGORİ ADI</th>
+                    <th style="text-align:center">KATEGORİ SİL</th>
+                    <th style="text-align:center">KATEGORİ GÜNCELLE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.NAME</td>
+                        <td width="200px">
+                            <input class="btn btn-danger" type="button" value="SİL" onclick="location.href='@Url.Action("DeleteCategory", "Category", new {id = item.ID })'" />
+                        </td>
+                        <td width="200px"><input class="btn btn-success" type="button" value="GÜNCELLE" onclick="location.href='@Url.Action("UpdateCategory", "Category", new {id = item.ID })'" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+﻿@using MVC_Library.Models.Entity
+@model MEMBER
+@{
+    ViewBag.Title = "GetMember";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Üye Güncelleme</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("UpdateMember", "Member", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Kitap ID#</label>
+            @Html.TextBoxFor(k => k.ID, new { @class = "form-control", @readonly = true })
+
+            <label>Kitap Adı</label>
+            @Html.TextBoxFor(k => k.NAME, new { @class = "form-control" })
+
+
+            <label>Basım Yılı</label>
+            @Html.TextBoxFor(k => k.SURNAME, new { @class = "form-control" })
+
+            <label>Sayfa Sayısı</label>
+            @Html.TextBoxFor(k => k.MAIL, new { @class = "form-control" })
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.USERNAME, new { @class = "form-control" })
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.PASSWORD, new { @class = "form-control" })
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.PHONE, new { @class = "form-control" })
+
+            <label>Yayınevi</label>
+            @Html.TextBoxFor(k => k.SCHOOL, new { @class = "form-control" })
+
+            <div style="text-align:center; margin:5px;">
+                <button class="btn btn-outline-warning">Güncelle</button>
+            </div>
+        </div>
+    }
+</body>
+
+</html>
+
