@@ -21,9 +21,7 @@
             while (true)
             {
                 var xpath = string.Format("//*[@id='post-23027']/div[2]/table[1]/tbody/tr[{0}]/td[2]", ct);
-                var xpath2 = string.Format("//*[@id='post-23027']/div[2]/table[2]/tbody/tr[{0}]/td[2]", ct);
                 var node = doc.DocumentNode.SelectSingleNode(xpath);
-                var node2 = doc.DocumentNode.SelectSingleNode(xpath2);
                 if (node != null)
                 {
                     listBox1.Items.Add(node.InnerText);
