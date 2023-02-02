@@ -1,4 +1,4 @@
-﻿
+﻿@model MVC_Library.Models.Entity.MEMBER
 @{
     Layout = null;
 }
@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Giriş Yap</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <style>
         .gradient-custom-2 {
@@ -41,30 +41,31 @@
                 <div class="col-xl-10">
                     <div class="card rounded-3 text-black">
                         <div class="card-body p-md-5 mx-md-4">
+                            @using (Html.BeginForm("Login", "Affiliation", FormMethod.Post))
+                            {<div style="text-align:center"><b style="color:red">@ViewBag.msg</b></div>
 
-                            <form method="post">
-                                <div style="text-align:center"><p><b>Lütfen hesabınıza giriş yapınız!</b></p></div>
+                            <div style="text-align:center"><p><b>Lütfen hesabınıza giriş yapınız!</b></p></div>
 
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="form2Example11" class="form-control" placeholder="Kullanıcı Adı" />
-                                </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" name="USERNAME" class="form-control" placeholder="Kullanıcı Adı" required="" />
+                            </div>
 
-                                <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example22" class="form-control"  placeholder="Şifre" />
-                                </div>
+                            <div class="form-outline mb-4">
+                                <input type="password" name="PASSWORD" class="form-control" placeholder="Şifre" required="" />
+                            </div>
 
-                                <div class="text-center pt-1 mb-5 pb-1">
-                                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">
-                                        Giriş Yap
-                                    </button>
-                                    <a class="text-muted" href="#!">Şifrenizi mi unuttunuz?</a>
-                                </div>
+                            <div class="text-center pt-1 mb-5 pb-1">
+                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
+                                    Giriş Yap
+                                </button>
+                                <a class="text-muted" href="#!">Şifrenizi mi unuttunuz?</a>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center pb-4">
+                                <p class="mb-0 me-2">Hesabın yok mu?</p>
+                                <a style="margin:5px" class="btn btn-outline-danger" href="/Affiliation/Register">Hemen kayıt ol!</a>
+                            </div>
+                        }
 
-                                <div class="d-flex align-items-center justify-content-center pb-4">
-                                    <p class="mb-0 me-2">Hesabın yok mu?</p>
-                                    <a style="margin:5px" class="btn btn-outline-danger" href="/Affiliation/Register">Hemen kayıt ol!</a>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

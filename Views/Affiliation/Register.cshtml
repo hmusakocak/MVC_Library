@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <html lang="en">
 <head>
-    <title>Register</title>
+    <title>Üyelik Oluştur</title>
     <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -92,14 +92,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="styled-input agile-styled-input-top">
                                     <select name="SCHOOL" required="">
-                                        <option value="">Course Type*</option>
-                                        <option value="Üniversite 1">üni</option>
-                                        <option value="Üniversite 2">üni2</option>
-                                        <option value="">Part time</option>
-                                        <option value="">Higher degree</option>
-                                        <option value="">Graduate</option>
-                                        <option value="">Pg</option>
-                                        <option value="">Degree</option>
+                                        @foreach (var item in ViewBag.listuni)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
                                     </select>
                                     <span></span>
                                 </div>
@@ -107,6 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <input type="submit" value="Kayıt Ol">
                         </form>
+                        <div style="margin-top:5px;text-align:center"><b style="color:red;font-size:22px;">@ViewBag.msg</b></div>
                     </div>
                 </div>
                 <div class="clear"> </div>

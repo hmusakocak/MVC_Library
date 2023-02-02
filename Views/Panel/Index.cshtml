@@ -1,0 +1,48 @@
+﻿@model MVC_Library.Models.Entity.MEMBER
+@{
+    Layout = "~/Views/Shared/PanelLayout.cshtml";
+}
+<h2>Hoş geldiniz, @Model.NAME @Model.SURNAME</h2>
+@using (Html.BeginForm("UpdatePassword", "Affiliation", FormMethod.Post))
+{<table class="table table-hover">
+        <tr>
+            <td><b>ID:</b> @Model.ID</td>
+        </tr>
+        <tr>
+            <td><b>Kullanıcı adı:</b>  @HttpContext.Current.User.Identity.Name </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Şifre:</b> <input class="form-control" type="password" id="passx" name="PASSWORD" value="@Model.PASSWORD" />
+                   <button  style="margin-top:3px" class="btn btn-warning" type="submit">Şifreyi Güncelle</button> <input class="checkbox" type="checkbox" onclick="showpass()" /> <b><label id="passtext"> Şifreyi Göster</label></b>
+            </td>
+        </tr>
+        <tr>
+            <td><b>İsim:</b> @Model.NAME </td>
+        </tr>
+        <tr>
+            <td><b>Soyisim:</b> @Model.SURNAME </td>
+        </tr>
+        <tr>
+            <td><b>E-posta adresi:</b> @Model.MAIL </td>
+        </tr>
+        <tr>
+            <td><b>Okuduğu Okul:</b> @Model.SCHOOL </td>
+        </tr>
+    </table>
+}
+
+
+<script>
+    function showpass() {
+        var x = document.getElementById("passx");
+        var y = document.getElementById("passtext");
+        if (x.type === "password") {
+            x.type = "text";
+            y.innerText = " Şifreyi Gizle";
+        } else {
+            x.type = "password";
+            y.innerText = " Şifreyi Göster";
+        }
+    }
+</script>

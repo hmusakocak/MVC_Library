@@ -54,6 +54,9 @@
     <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>packages\FluentValidation.11.4.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -150,6 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Controllers\ProcessController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
@@ -332,6 +336,9 @@
     <Content Include="Content\StatsComponent\js\site.js" />
     <Content Include="Content\StatsComponent\js\underscore-min.js" />
     <Content Include="Content\StatsComponent\w3layouts-License.txt" />
+    <Content Include="Content\PanelComponent\assets\favicon.ico" />
+    <Content Include="Content\PanelComponent\css\styles.css" />
+    <Content Include="Content\PanelComponent\js\scripts.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -368,6 +375,8 @@
     <Content Include="Views\Process\PenaltyList.cshtml" />
     <Content Include="Views\Affiliation\Login.cshtml" />
     <Content Include="Views\Affiliation\Register.cshtml" />
+    <Content Include="Views\Panel\Index.cshtml" />
+    <Content Include="Views\Shared\PanelLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
