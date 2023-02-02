@@ -10,23 +10,23 @@
 - **Admin role and controller based authentication will be added.**
 ```csharp
             //HTML Parser that gets all universities by mining data from given URL.
-            HtmlWeb hw = new HtmlWeb();
+            HtmlWeb web = new HtmlWeb();
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            hw.OverrideEncoding = Encoding.UTF8;
-            string link = "https://www.unibilgi.net/turkiyedeki-universitelerin-listesi/";
-
-            doc = hw.Load(link);
-
+            web.OverrideEncoding = Encoding.UTF8;
+            doc = web.Load("https://www.unibilgi.net/turkiyedeki-universitelerin-listesi/");
+            List<string> list_of_uni = new List<string>();
             int ct = 2;
             while (true)
             {
                 var xpath = string.Format("//*[@id='post-23027']/div[2]/table[1]/tbody/tr[{0}]/td[2]", ct);
                 var node = doc.DocumentNode.SelectSingleNode(xpath);
+
                 if (node != null)
                 {
-                    listBox1.Items.Add(node.InnerText);
+                    list_of_uni.Add(node.InnerText);
                 }
                 else { break; }
                 ct++;
             }
+            ViewBag.listuni = list_of_uni;
 ```
