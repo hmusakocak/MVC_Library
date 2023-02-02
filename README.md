@@ -7,4 +7,5 @@
 - **Chatting between users process will be added when student panel is done.**
 - **SQL database create script will be shared soon.**
 - **!!! You need to change <ins>data source</ins> field in "Web.config" file. The field is located in <ins> connectionStrings</ins> tag !!!**
+- **Admin role and controller based authentication will be added.**
 
