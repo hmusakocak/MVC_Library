@@ -21,6 +21,7 @@
         <AssociationConnector Association="DBKUTUPHANEModel.FK_MOVEMENT_MEMBER" ManuallyRouted="false" />
         <AssociationConnector Association="DBKUTUPHANEModel.FK_PENALTY_MEMBER" ManuallyRouted="false" />
         <AssociationConnector Association="DBKUTUPHANEModel.FK_PENALTY_MOVEMENT" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBKUTUPHANEModel.MESSAGE" Width="1.875" PointX="7.75" PointY="3.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

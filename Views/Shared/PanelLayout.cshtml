@@ -12,6 +12,7 @@
     <title>Üye Panel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="~/Content/PanelComponent/assets/favicon.ico" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="~/Content/PanelComponent/css/styles.css" rel="stylesheet" />
 </head>
@@ -21,8 +22,8 @@
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light">MVC5 PANEL</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profilim</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Mesajlar</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panel/Index">Profilim</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Panel/Message">Mesajlar</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Duyurular</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Kitaplarım</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Cezalarım</a>
@@ -40,9 +41,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayarlar</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Hesabım</a>
-                                    <a class="dropdown-item" href="#!">Çıkış Yap</a>
-
+                                    <a class="dropdown-item" href="/Panel/Index">Hesabım</a>
+                                    <button class="dropdown-item" onclick="location.href='@Url.Action("Exit","Panel")'">Çıkış Yap</button>
                                 </div>
                             </li>
                         </ul>

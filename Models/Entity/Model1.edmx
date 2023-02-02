@@ -54,6 +54,15 @@
           <Property Name="PHONE" Type="varchar" MaxLength="50" />
           <Property Name="SCHOOL" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="MESSAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="nvarchar(max)" />
+          <Property Name="sender_username" Type="varchar" MaxLength="50" />
+          <Property Name="receiver_username" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="MOVEMENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -200,6 +209,7 @@
           <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBER" EntityType="Self.MEMBER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOVEMENT" EntityType="Self.MOVEMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PENALTY" EntityType="Self.PENALTY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -466,7 +476,17 @@
             <End Role="MOVEMENT" EntitySet="MOVEMENT" />
             <End Role="PENALTY" EntitySet="PENALTY" />
           </AssociationSet>
+          <EntitySet Name="MESSAGE" EntityType="DBKUTUPHANEModel.MESSAGE" />
         </EntityContainer>
+        <EntityType Name="MESSAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sender_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="receiver_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -572,6 +592,16 @@
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
                 <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MESSAGE">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.MESSAGE">
+              <MappingFragment StoreEntitySet="MESSAGE">
+                <ScalarProperty Name="receiver_username" ColumnName="receiver_username" />
+                <ScalarProperty Name="sender_username" ColumnName="sender_username" />
+                <ScalarProperty Name="message1" ColumnName="message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/PanelLayout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title></title>
+    <style>
+        .reveal-content {
+            animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        .wrapper {
+            overflow: hidden;
+        }
+
+        #reveal-content {
+            max-height: 1000px;
+            transition: all 0.5s ease-in;
+        }
+
+        .hide {
+            max-height: 0 !important;
+            transition: all 0.2s ease-out;
+        }
+
+        @@keyframes slide-in-fwd-center {
+            0% {
+                transform: translateZ(-1400px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateZ(0);
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Mesajlarım</h1>
+    <button type="button" id="btn-reveal" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-down"></i>Gelen Kutusu</button>
+    <button type="button" id="btn-reveal" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-up"></i>Giden Kutusu</button>
+    <div class="wrapper">
+        <div id="reveal-content" class="hide">
+            <div id="json-content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque dui magna, imperdiet ultricies felis pellentesque nec. Aenean iaculis tellus porttitor sapien sagittis, eu dapibus dui ultricies. In gravida arcu leo, sit amet convallis quam
+                    tincidunt tempus. Aliquam eget suscipit tortor. Maecenas eget nunc eu risus auctor lacinia. Nulla et sapien sed urna ultrices pretium non ac purus. Quisque sed egestas augue. Aliquam sit amet vulputate tortor. Sed condimentum tellus eu placerat
+                    feugiat. Nullam quis eros sed magna venenatis condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere lacinia facilisis. Curabitur sit amet porta dui.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    document.getElementById("btn-reveal").addEventListener('click', function () {
+        let el = document.getElementById('reveal-content');
+        if (el.classList.contains('hide')) {
+            el.classList.remove('hide');
+        } else {
+            el.classList.add('hide');
+        }
+    });
+</script>
