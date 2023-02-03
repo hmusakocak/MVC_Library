@@ -43,8 +43,7 @@ namespace MVC_Library.Controllers
             var listofreceived = (from x in db_entities.MESSAGE select x).Where(x => x.receiver_username == username).ToList();
 
             Dictionary<string, string> memberlist = new Dictionary<string, string>();
-            Dictionary<string, string> msgreceive = new Dictionary<string, string>();
-            Dictionary<string, string> msgsent = new Dictionary<string, string>();
+
 
             foreach (var item in db_entities.MEMBER)
             {
