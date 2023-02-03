@@ -1,4 +1,4 @@
-﻿
+﻿@model MVC_Library.Models.Entity.MESSAGE
 @{
     ViewBag.Title = "Message";
     Layout = "~/Views/Shared/PanelLayout.cshtml";
@@ -20,7 +20,7 @@
             overflow: hidden;
         }
 
-        #reveal-content {
+        #reveal-content, #reveal-content1, #reveal-content2 {
             max-height: 1000px;
             transition: all 0.5s ease-in;
         }
@@ -41,31 +41,143 @@
                 opacity: 1;
             }
         }
+
+        .alert-dismissable .close, .alert-dismissible .close {
+            position: relative;
+            top: -2px;
+            right: -21px;
+            color: inherit;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            opacity: .2;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
     </style>
 
 </head>
 <body>
-    <h1>Mesajlarım</h1>
-    <button type="button" id="btn-reveal" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-down"></i>Gelen Kutusu</button>
-    <button type="button" id="btn-reveal" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-up"></i>Giden Kutusu</button>
-    <div class="wrapper">
+    <h1 style="margin-left:15px">Mesajlarım</h1>
+    <div style="margin:15px">
+        <button type="button" id="btn-reveal" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-down"></i> Gelen Kutusu</button>
+        <button type="button" id="btn-reveal1" class="btn btn-outline-warning"><i class="bi bi-arrow-bar-up"></i> Giden Kutusu</button>
+        <button type="button" id="btn-reveal2" class="btn btn-outline-warning"><i class="bi bi-envelope-plus-fill"></i> Mesaj Oluştur</button>
+    </div>
+    <div style="margin-left:15px" class="wrapper">
         <div id="reveal-content" class="hide">
-            <div id="json-content">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque dui magna, imperdiet ultricies felis pellentesque nec. Aenean iaculis tellus porttitor sapien sagittis, eu dapibus dui ultricies. In gravida arcu leo, sit amet convallis quam
-                    tincidunt tempus. Aliquam eget suscipit tortor. Maecenas eget nunc eu risus auctor lacinia. Nulla et sapien sed urna ultrices pretium non ac purus. Quisque sed egestas augue. Aliquam sit amet vulputate tortor. Sed condimentum tellus eu placerat
-                    feugiat. Nullam quis eros sed magna venenatis condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere lacinia facilisis. Curabitur sit amet porta dui.
-                </p>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Kimden;</th>
+                            <th>Alınan Mesaj;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listofreceived)
+                        {
+                            <tr>
+                                <td>@item.sender_fullname</td>
+                                <td>@item.message1</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
+    <div style="margin-left:15px" class="wrapper">
+        <div id="reveal-content1" class="hide">
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Kime;</th>
+                            <th>İletilen Mesaj;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listofsent)
+                        {
+                            <tr>
+                                <td>@item.receiver_fullname</td>
+                                <td>@item.message1</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("SendMessage", "Panel", FormMethod.Post))
+    {
+        <div style="margin-left:15px;margin-bottom:10px" class="wrapper">
+            <div id="reveal-content2" class="hide">
+                <div>
+                    <label for="select"><b>Kime;</b></label>
+                    <select id="select" class="form-control" name="receiver_username" required="">
+                        @foreach (var item in ViewBag.memberlist)
+                        {
+                            if (item.Key == HttpContext.Current.User.Identity.Name)
+                            { continue; }
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </select>
+                    <label style="margin-top:4px" for="area"><b>Mesaj;</b></label>
+                    <textarea name="message1" id="area" style="resize:none" rows="10" class="form-control" required=""></textarea>
+                </div>
+                <div style="margin-left:45%;margin-top:5px"><button class="btn btn-dark" type="submit">Mesajı İlet</button></div>
+            </div>
+        </div>
+    }
+    @Html.Raw(ViewBag.success)
 </body>
 
 </html>
 <script>
     document.getElementById("btn-reveal").addEventListener('click', function () {
         let el = document.getElementById('reveal-content');
+        let el1 = document.getElementById('reveal-content1');
+        let el2 = document.getElementById('reveal-content2');
         if (el.classList.contains('hide')) {
+            el1.classList.add('hide');
+            el2.classList.add('hide');
+            el.classList.remove('hide');
+        } else {
+            el.classList.add('hide');
+        }
+    });
+    document.getElementById("btn-reveal1").addEventListener('click', function () {
+        let el = document.getElementById('reveal-content1');
+        let el1 = document.getElementById('reveal-content');
+        let el2 = document.getElementById('reveal-content2');
+        if (el.classList.contains('hide')) {
+            el1.classList.add('hide');
+            el2.classList.add('hide');
+            el.classList.remove('hide');
+        } else {
+            el.classList.add('hide');
+        }
+    });
+    document.getElementById("btn-reveal2").addEventListener('click', function () {
+        let el = document.getElementById('reveal-content2');
+        let el1 = document.getElementById('reveal-content1');
+        let el2 = document.getElementById('reveal-content');
+        if (el.classList.contains('hide')) {
+            el1.classList.add('hide');
+            el2.classList.add('hide');
             el.classList.remove('hide');
         } else {
             el.classList.add('hide');

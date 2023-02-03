@@ -62,6 +62,8 @@
           <Property Name="message" Type="nvarchar(max)" />
           <Property Name="sender_username" Type="varchar" MaxLength="50" />
           <Property Name="receiver_username" Type="varchar" MaxLength="50" />
+          <Property Name="sender_fullname" Type="varchar" MaxLength="50" />
+          <Property Name="receiver_fullname" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MOVEMENT">
           <Key>
@@ -486,6 +488,8 @@
           <Property Name="message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sender_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="receiver_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sender_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="receiver_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -598,6 +602,8 @@
           <EntitySetMapping Name="MESSAGE">
             <EntityTypeMapping TypeName="DBKUTUPHANEModel.MESSAGE">
               <MappingFragment StoreEntitySet="MESSAGE">
+                <ScalarProperty Name="receiver_fullname" ColumnName="receiver_fullname" />
+                <ScalarProperty Name="sender_fullname" ColumnName="sender_fullname" />
                 <ScalarProperty Name="receiver_username" ColumnName="receiver_username" />
                 <ScalarProperty Name="sender_username" ColumnName="sender_username" />
                 <ScalarProperty Name="message1" ColumnName="message" />

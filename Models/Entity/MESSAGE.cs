@@ -18,5 +18,7 @@ namespace MVC_Library.Models.Entity
         public string message1 { get; set; }
         public string sender_username { get; set; }
         public string receiver_username { get; set; }
+        public string sender_fullname { get; set; }
+        public string receiver_fullname { get; set; }
     }
 }
