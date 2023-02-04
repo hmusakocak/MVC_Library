@@ -147,6 +147,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AffiliationController.cs" />
+    <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -189,6 +190,9 @@
     <Compile Include="Business\Managers\MovementManager.cs" />
     <Compile Include="Business\Managers\PenaltyManager.cs" />
     <Compile Include="Business\Managers\WriterManager.cs" />
+    <Compile Include="Models\Entity\ANNOUNCEMENT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\BOOK.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -381,6 +385,8 @@
     <Content Include="Views\Panel\Index.cshtml" />
     <Content Include="Views\Shared\PanelLayout.cshtml" />
     <Content Include="Views\Panel\Message.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
+    <Content Include="Views\Panel\Announcement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

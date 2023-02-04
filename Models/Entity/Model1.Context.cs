@@ -35,5 +35,6 @@ namespace MVC_Library.Models.Entity
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<WRITER> WRITER { get; set; }
         public virtual DbSet<MESSAGE> MESSAGE { get; set; }
+        public virtual DbSet<ANNOUNCEMENT> ANNOUNCEMENT { get; set; }
     }
 }

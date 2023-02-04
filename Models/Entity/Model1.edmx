@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBKUTUPHANEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANNOUNCEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEXT" Type="varchar(max)" />
+          <Property Name="TYPE" Type="nchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="BOOK">
           <Key>
             <PropertyRef Name="ID" />
@@ -206,6 +214,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBKUTUPHANEModelStoreContainer">
+          <EntitySet Name="ANNOUNCEMENT" EntityType="Self.ANNOUNCEMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CASE" EntityType="Self.CASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
@@ -479,6 +488,7 @@
             <End Role="PENALTY" EntitySet="PENALTY" />
           </AssociationSet>
           <EntitySet Name="MESSAGE" EntityType="DBKUTUPHANEModel.MESSAGE" />
+          <EntitySet Name="ANNOUNCEMENT" EntityType="DBKUTUPHANEModel.ANNOUNCEMENT" />
         </EntityContainer>
         <EntityType Name="MESSAGE">
           <Key>
@@ -490,6 +500,14 @@
           <Property Name="receiver_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sender_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="receiver_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ANNOUNCEMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -607,6 +625,15 @@
                 <ScalarProperty Name="receiver_username" ColumnName="receiver_username" />
                 <ScalarProperty Name="sender_username" ColumnName="sender_username" />
                 <ScalarProperty Name="message1" ColumnName="message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ANNOUNCEMENT">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.ANNOUNCEMENT">
+              <MappingFragment StoreEntitySet="ANNOUNCEMENT">
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

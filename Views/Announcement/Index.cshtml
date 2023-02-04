@@ -1,0 +1,71 @@
+﻿@model MVC_Library.Models.Entity.ANNOUNCEMENT
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<style>
+    th,td {
+        text-align: center
+    }
+
+    #source {
+        border: 1px solid #ccc;
+        height: auto;
+        margin-top: 10px;
+        min-height: 10px;
+        overflow: auto;
+        padding: 5px;
+        width: 106px;
+        word-break: break-word;
+    }
+</style>
+@using (Html.BeginForm("AddAnnouncement", "Announcement", FormMethod.Post))
+{
+    <div style="margin-top:30px">
+        <form method="post" id="ann">
+            <label for="anntype"><b>Duyuru Tipi</b></label>
+            <select class="form-control" name="TYPE" id="anntype">
+                <option value="danger">ÖNEMLİ</option>
+                <option value="warning">UYARI</option>
+                <option value="info">BİLGİLENDİRME</option>
+            </select>
+            <label style="margin-top:10px" for="textfield"><b>Duyuru İçeriği</b></label>
+            @Html.TextAreaFor(k => k.TEXT, new { @class = "form-control" , @style="resize:none;height:100px" })
+            <div style="text-align:center;margin-top:5px"><button type="submit" class="btn btn-primary">Duyuruyu Kaydet ve Yayınla</button></div>
+        </form>
+    </div>
+}
+
+
+
+<table style="margin-top:5%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Duyuru ID
+            </th>
+            <th>
+                Duyuru Tipi
+            </th>
+            <th>
+                Duyuru İçeriği
+            </th>
+            <th>
+                İşlem
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in ViewBag.list)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.TYPE</td>
+            <td>@item.TEXT</td>
+            <td><a onclick="location.href='@Url.Action("DeleteAnnouncement","Announcement", new{ id = item.ID })'" class="btn btn-@item.TYPE">Duyuruyu Kaldır</a></td>
+        </tr>
+    }
+</table>
+
+
+

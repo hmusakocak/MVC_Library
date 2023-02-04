@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MVC_Library.Models.Entity;
 
+
 namespace MVC_Library.Controllers
 {
     [Authorize]
@@ -53,9 +54,16 @@ namespace MVC_Library.Controllers
             ViewBag.memberlist = memberlist;
             ViewBag.listofsent = listofsent;
             ViewBag.listofreceived = listofreceived;
+            ViewBag.sentnumber = listofsent.Count;
+            ViewBag.receivednumber = listofreceived.Count;
             if (TempData["success"] != null)
                 ViewBag.success = TempData["success"];
             return View();
+        }
+
+        public ActionResult Announcement() 
+        {
+            return View(db_entities.ANNOUNCEMENT.ToList());
         }
 
         public ActionResult SendMessage(MESSAGE m)

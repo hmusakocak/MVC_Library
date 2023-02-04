@@ -1,0 +1,16 @@
+﻿@model List<MVC_Library.Models.Entity.ANNOUNCEMENT>
+@{
+    ViewBag.Title = "Announcement";
+    Layout = "~/Views/Shared/PanelLayout.cshtml";
+}
+
+<div style="margin:2%"><h2 style="margin-top:15px">Panel Duyuruları</h2></div>
+
+
+<div style="margin:5%">
+    @foreach (var item in Model)
+    {
+        <div style="text-align:center" class="alert alert-@item.TYPE alert-dismissible"><strong>@item.TEXT</strong></div>
+    }
+</div>
+<div style="text-align:center"><a class="btn btn-info" onclick="location.href='@Url.Action("Announcement","Panel")'">Yenile</a></div>
