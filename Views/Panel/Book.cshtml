@@ -1,0 +1,45 @@
+﻿@model List<MVC_Library.Models.Entity.MOVEMENT>
+@{
+    ViewBag.Title = "Book";
+    Layout = "~/Views/Shared/PanelLayout.cshtml";
+}
+
+<h2 style="text-align:center;margin: 10px 0px 10px 0px">Alınan Kitaplar Geçmişi</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Kitap Kategorisi</th>
+            <th>Kitabın Alındığı Tarih</th>
+            <th>Ceza Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BOOK1.NAME</td>
+                <td>@item.BOOK1.CATEGORY1.NAME</td>
+                <td>@item.GIVE_TIME.Value.ToString("dd/MM/yyyy")</td>
+                @if (item.isPenaltyApplied == true)
+                {
+                    <td>Ceza uygulandı.</td>
+                }
+                else if (item.STATUS == false && item.GET_TIME.Value >= DateTime.Today)
+                {
+                    <td>Kitap üyede.(Süre geçmedi)</td>
+                }
+                else if (item.STATUS == false && item.GET_TIME.Value < DateTime.Today)
+                {
+                    <td>Kitap üyede.(Süre geçti)</td>
+                }
+                else
+                {
+                    <td>Ceza uygulanmadı.</td>
+
+                }
+            </tr>
+        }
+    </tbody>
+</table>

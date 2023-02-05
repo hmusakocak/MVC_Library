@@ -88,6 +88,14 @@ namespace MVC_Library.Controllers
             return RedirectToAction("Message");
         }
 
+        public ActionResult Book()
+        {
+            var username = (string)Session["username"];
+            var booklist = db_entities.MOVEMENT.Where(x => x.MEMBER1.USERNAME == username).ToList();
+
+            return View(booklist);
+        }
+
         public ActionResult Exit()
         {
             FormsAuthentication.SignOut();
