@@ -7,16 +7,16 @@
 <title>Kitap Ver</title>
 <form style="margin-top:20px" class="form-group" method="post">
     <label><b>Üye ID#</b></label>
-    @Html.TextBoxFor(k => k.MEMBER, new { @class = "form-control" })
+    @Html.DropDownListFor(k => k.MEMBER, (List<SelectListItem>)ViewBag.memberlist, new { @class = "form-control" })
     <div><b style="color:red">@Html.ValidationMessageFor(k => k.MEMBER)</b></div><br />
 
     <label><b>Kitap ID#</b></label>
-    @Html.TextBoxFor(k => k.BOOK, new { @class = "form-control" })
-<div><b style="color:red">@ViewBag.errormsg</b></div>
+    @Html.DropDownListFor(k => k.BOOK, (List<SelectListItem>)ViewBag.booklist, new { @class = "form-control" })
+    <div><b style="color:red">@ViewBag.errormsg</b></div>
     <div><b style="color:red">@Html.ValidationMessageFor(k => k.BOOK)</b></div><br />
 
     <label><b>Personel ID#</b></label>
-    @Html.TextBoxFor(k => k.EMPLOYEE, new { @class = "form-control" })
+    @Html.DropDownListFor(k => k.EMPLOYEE, (List<SelectListItem>)ViewBag.employeelist, new { @class = "form-control" })
     <div><b style="color:red">@Html.ValidationMessageFor(k => k.EMPLOYEE)</b></div><br />
 
     <label><b>Ödünç Veriliş Tarihi</b></label>

@@ -17,6 +17,7 @@ namespace MVC_Library.Controllers
         // GET: Panel
         DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
 
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -94,6 +95,13 @@ namespace MVC_Library.Controllers
             var booklist = db_entities.MOVEMENT.Where(x => x.MEMBER1.USERNAME == username).ToList();
 
             return View(booklist);
+        }
+
+        public ActionResult Penalty()
+        {
+            var username = (string)Session["username"];
+            var penaltylist = db_entities.PENALTY.Where(x => x.MEMBER1.USERNAME == username).ToList();
+            return View(penaltylist);
         }
 
         public ActionResult Exit()

@@ -388,6 +388,7 @@
     <Content Include="Views\Announcement\Index.cshtml" />
     <Content Include="Views\Panel\Announcement.cshtml" />
     <Content Include="Views\Panel\Book.cshtml" />
+    <Content Include="Views\Panel\Penalty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

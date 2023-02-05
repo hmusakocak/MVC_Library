@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using MVC_Library.DataLayer.EntityFramework;
 using MVC_Library.FluentValidation;
 using MVC_Library.Managers;
@@ -13,7 +14,7 @@ namespace MVC_Library.Controllers
 {
     public class LoanController : Controller
     {
-        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();
+        DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();        
         MovementManager mm = new MovementManager(new EFMovementDal());
         // GET: Loan
         public ActionResult Index()
@@ -24,6 +25,10 @@ namespace MVC_Library.Controllers
         [HttpPost]
         public ActionResult GiveBook(MOVEMENT m)
         {
+            List<SelectListItem> memberlist = (from mm in db_entities.MEMBER.ToList() select new SelectListItem { Text = mm.NAME, Value = mm.ID.ToString() }).ToList();
+            List<SelectListItem> booklist = (from b in db_entities.BOOK.Where(x => x.STATUS == true).ToList() select new SelectListItem { Text = b.NAME, Value = b.ID.ToString() }).ToList();
+            List<SelectListItem> employeelist = (from e in db_entities.EMPLOYEE.ToList() select new SelectListItem { Text = e.EMPLOYEE1, Value = e.ID.ToString() }).ToList();
+
             LoanValidator lv = new LoanValidator();
             var result = lv.Validate(m);
 
@@ -36,6 +41,9 @@ namespace MVC_Library.Controllers
                     ViewBag.errormsg = "Bu kitap ödünç verilemez!";
                     db_entities.MOVEMENT.Remove(m);
                     db_entities.SaveChanges();
+                    ViewBag.memberlist = memberlist;
+                    ViewBag.booklist = booklist;
+                    ViewBag.employeelist = employeelist;
                     return View();
                 }
                 else
@@ -51,10 +59,9 @@ namespace MVC_Library.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                if (bookstatcontrol != null && bookstatcontrol.STATUS == false)
-                {
-                    ViewBag.errormsg = "Bu kitap ödünç verilemez!";
-                }
+                ViewBag.memberlist = memberlist;
+                ViewBag.booklist = booklist;
+                ViewBag.employeelist = employeelist;
                 return View();
             }
         }
@@ -62,6 +69,14 @@ namespace MVC_Library.Controllers
         [HttpGet]
         public ActionResult GiveBook()
         {
+            List<SelectListItem> memberlist = (from m in db_entities.MEMBER.ToList() select new SelectListItem { Text = m.NAME, Value= m.ID.ToString() }).ToList();
+            List<SelectListItem> booklist = (from b in db_entities.BOOK.Where(x=>x.STATUS == true).ToList() select new SelectListItem { Text = b.NAME, Value= b.ID.ToString() }).ToList();
+            List<SelectListItem> employeelist = (from e in db_entities.EMPLOYEE.ToList() select new SelectListItem { Text = e.EMPLOYEE1 , Value= e.ID.ToString() }).ToList();
+
+            
+            ViewBag.memberlist = memberlist; 
+            ViewBag.booklist = booklist; 
+            ViewBag.employeelist = employeelist; 
             return View();
         }
 

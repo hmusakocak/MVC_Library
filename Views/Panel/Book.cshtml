@@ -26,6 +26,7 @@
                 <td>@item.BOOK1.NAME</td>
                 <td>@item.BOOK1.CATEGORY1.NAME</td>
                 <td>@item.GIVE_TIME.Value.ToString("dd/MM/yyyy")</td>
+
                 @if (item.isPenaltyApplied == true)
                 {
                     <td>Ceza uygulandı.</td>
@@ -38,7 +39,12 @@
                 {
                     <td>Kitap üyede.(Süre geçti)</td>
                 }
-                else
+                else if (item.STATUS == true && item.MEMBER_GIVETIME.Value > item.GET_TIME.Value)
+                {
+                    <td>Ceza uygulanacak.</td>
+
+                }
+                else if (item.STATUS == true && item.MEMBER_GIVETIME.Value < item.GET_TIME.Value)
                 {
                     <td>Ceza uygulanmadı.</td>
 
