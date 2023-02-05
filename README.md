@@ -1,10 +1,10 @@
 <div><h1 align="center">MVC Library Management</h1></div>
 
 - **Register and login form components are included inside of Content folder.**
-- **Templates from w3schools aren't modified. Templates are staying how they look like when they are taken.**
 - **SQL database create script will be shared soon.**
 - **!!! You need to change <ins>data source</ins> field in "Web.config" file. The field is located in <ins> connectionStrings</ins> tag !!!**
 - **Admin role and controller based authentication will be added.**
+- **University list code is below.**
 ```csharp
             //HTML Parser that gets all universities by mining data from given URL.
             HtmlWeb web = new HtmlWeb();
