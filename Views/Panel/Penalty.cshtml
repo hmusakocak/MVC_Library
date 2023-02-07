@@ -1,21 +1,21 @@
-﻿@model List<MVC_Library.Models.Entity.PENALTY> 
+﻿@model List<MVC_Library.Models.Entity.PENALTY>
 @{
     ViewBag.Title = "Penalty";
     Layout = "~/Views/Shared/PanelLayout.cshtml";
 }
 
-<h2 style="text-align:center;margin: 10px 0px 10px 0px"> Cezalarım</h2>
+<h2 style="margin: 10px 0px 10px 0px"> Cezalarım</h2>
 <style>
     th, td {
         text-align: center
     }
 </style>
-
+<div style="text-align:center;width:500px;margin:10px auto;text-align:center" class="alert alert-info alert-dismissible"><strong>Gün başına 6.27₺ cezai işlem uygulanır.</strong></div>
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Kitabın Alınma Tarihi</th>
-            <th>İade Tarihi</th>
+            <th>Kitabın Mecburi İade Tarihi</th>
+            <th>İadenin Gerçekleştiği Tarih</th>
             <th>Ceza Miktarı</th>
 
         </tr>
@@ -32,3 +32,4 @@
         }
     </tbody>
 </table>
+<div style="text-align:center;margin:10px 0px 10px 0px;text-align:center" class="alert alert-warning alert-dismissible"><strong>Ödenmesi Gereken Ceza: @Model.Sum(k => k.MONEY)₺</strong></div>
