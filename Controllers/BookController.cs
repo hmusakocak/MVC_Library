@@ -12,6 +12,8 @@ using MVC_Library.Models.Entity;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     public class BookController : Controller
     {
         DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();

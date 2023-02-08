@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class AnnouncementController : Controller
     {
         DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();

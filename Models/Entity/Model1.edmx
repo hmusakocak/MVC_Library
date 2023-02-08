@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBKUTUPHANEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="role" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="ANNOUNCEMENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -214,6 +223,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBKUTUPHANEModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ANNOUNCEMENT" EntityType="Self.ANNOUNCEMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CASE" EntityType="Self.CASE" Schema="dbo" store:Type="Tables" />
@@ -489,6 +499,7 @@
           </AssociationSet>
           <EntitySet Name="MESSAGE" EntityType="DBKUTUPHANEModel.MESSAGE" />
           <EntitySet Name="ANNOUNCEMENT" EntityType="DBKUTUPHANEModel.ANNOUNCEMENT" />
+          <EntitySet Name="ADMIN" EntityType="DBKUTUPHANEModel.ADMIN" />
         </EntityContainer>
         <EntityType Name="MESSAGE">
           <Key>
@@ -508,6 +519,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TYPE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -634,6 +654,16 @@
               <MappingFragment StoreEntitySet="ANNOUNCEMENT">
                 <ScalarProperty Name="TYPE" ColumnName="TYPE" />
                 <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADMIN">
+            <EntityTypeMapping TypeName="DBKUTUPHANEModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

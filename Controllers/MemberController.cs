@@ -8,6 +8,8 @@ using System.Web.Mvc;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     public class MemberController : Controller
     {
         MemberManager mm = new MemberManager(new EFMemberDal());

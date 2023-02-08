@@ -2,36 +2,73 @@
 @{
     Layout = "~/Views/Shared/PanelLayout.cshtml";
 }
+
+<style>
+    #profile-div {
+        border-radius: 4px;
+        border-style: solid;
+        margin:0 auto;
+        border-width: 2px;
+        border-color: #9E9492;
+        background-color: #F0EAE9;
+        height: auto;
+        width: 500px;
+    }
+
+    #top-div {
+        width: 90%;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        border-left-width: 20px;
+        border-left-color: #9fc4c6;
+        border-left-style: solid;
+        border-right-width: 20px;
+        border-right-color: #9fc4c6;
+        border-right-style: solid;
+        background-color: #F0EAE9;
+        position: relative;
+        z-index: 3;
+    }
+</style>
+
+
+
+
 <h3>Hoş geldiniz, @Model.NAME @Model.SURNAME</h3>
-<div style="margin:5px"><b style="color:red">Kütüphane sisteminde kayıtlı bilgileriniz aşağıda yer almaktadır.</b></div>
-@using (Html.BeginForm("UpdatePassword", "Panel", FormMethod.Post))
-{<table class="table table-hover">
-        <tr>
-            <td><b>ID:</b> @Model.ID</td>
-        </tr>
-        <tr>
-            <td><b>Kullanıcı adı:</b>  @HttpContext.Current.User.Identity.Name </td>
-        </tr>
-        <tr>
-            <td><b>İsim:</b> @Model.NAME </td>
-        </tr>
-        <tr>
-            <td><b>Soyisim:</b> @Model.SURNAME </td>
-        </tr>
-        <tr>
-            <td><b>E-posta adresi:</b> @Model.MAIL </td>
-        </tr>
-        <tr>
-            <td><b>Okuduğu okul:</b> @Model.SCHOOL </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Şifre:</b> <input class="form-control" type="password" id="passx" name="PASSWORD" value="@Model.PASSWORD" />
-                <button style="margin-top:3px" class="btn btn-warning" type="submit">Şifreyi Güncelle</button> <input class="checkbox" id="passwordcheck" type="checkbox" onclick="showpass()" /> <b><label for="passwordcheck" id="passtext"> Şifreyi Göster</label></b>
-            </td>
-        </tr>
-    </table>
-}
+<div id="top-div"><b style="color: cadetblue ">Kütüphane sisteminde kayıtlı bilgileriniz aşağıda yer almaktadır.</b></div>
+<div id="profile-div">
+    @using (Html.BeginForm("UpdatePassword", "Panel", FormMethod.Post))
+    {<table class="table table-hover">
+            <tr>
+                <td><b>ID:</b> @Model.ID</td>
+            </tr>
+            <tr>
+                <td><b>Kullanıcı adı:</b>  @HttpContext.Current.User.Identity.Name </td>
+            </tr>
+            <tr>
+                <td><b>İsim:</b> @Model.NAME </td>
+            </tr>
+            <tr>
+                <td><b>Soyisim:</b> @Model.SURNAME </td>
+            </tr>
+            <tr>
+                <td><b>E-posta adresi:</b> @Model.MAIL </td>
+            </tr>
+            <tr>
+                <td><b>Okuduğu okul:</b> @Model.SCHOOL </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Şifre:</b> <input class="form-control" type="password" id="passx" name="PASSWORD" value="@Model.PASSWORD" />
+                    <button style="margin-top:3px" class="btn btn-warning" type="submit">Şifreyi Güncelle</button> <input class="checkbox" id="passwordcheck" type="checkbox" onclick="showpass()" /> <b><label for="passwordcheck" id="passtext"> Şifreyi Göster</label></b>
+                </td>
+            </tr>
+        </table>
+    }
+</div>
 
 
 <script>

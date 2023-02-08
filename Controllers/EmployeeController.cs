@@ -12,6 +12,8 @@ using System.Web.Mvc;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     public class EmployeeController : Controller
     {
 

@@ -23,6 +23,7 @@
         <AssociationConnector Association="DBKUTUPHANEModel.FK_PENALTY_MOVEMENT" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBKUTUPHANEModel.MESSAGE" Width="1.875" PointX="7.75" PointY="3.25" />
         <EntityTypeShape EntityType="DBKUTUPHANEModel.ANNOUNCEMENT" Width="2.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DBKUTUPHANEModel.ADMIN" Width="1.5" PointX="8.125" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

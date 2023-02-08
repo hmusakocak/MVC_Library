@@ -11,6 +11,7 @@ using MVC_Library.Models.Entity;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EFCategoryDal());

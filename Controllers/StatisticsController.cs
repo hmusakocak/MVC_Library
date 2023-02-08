@@ -8,6 +8,8 @@ using System.Web.Mvc;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     public class StatisticsController : Controller
     {
         DBKUTUPHANE_Entities db_entities = new DBKUTUPHANE_Entities();

@@ -11,6 +11,8 @@ using MVC_Library.Models.Entity;
 
 namespace MVC_Library.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EFWriterDal());
