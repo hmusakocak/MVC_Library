@@ -25,7 +25,7 @@
             }
             ViewBag.listuni = list_of_uni;
 ```
-- Database CREATE script is below.
+- **Database CREATE script is below.**
 ```sql
 USE [master]
 GO
