@@ -1,6 +1,5 @@
 <div><h1 align="center">MVC Library Management</h1></div>
 
-- **Register and login form components are included inside of Content folder.**
 - **!!! You need to change <ins>data source</ins> field in "Web.config" file. The field is located in <ins> connectionStrings</ins> tag !!!**<br><br>
 - **University list code is below.**
 ```csharp
